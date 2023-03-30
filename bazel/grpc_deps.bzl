@@ -1,7 +1,7 @@
 """Load dependencies needed to compile and test the grpc library as a 3rd-party consumer."""
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load("@com_github_grpc_grpc//bazel:grpc_python_deps.bzl", "grpc_python_deps")
+load("@grpc//bazel:grpc_python_deps.bzl", "grpc_python_deps")
 
 def grpc_deps():
     """Loads dependencies need to compile and test the grpc library."""
@@ -78,12 +78,12 @@ def grpc_deps():
 
     native.bind(
         name = "grpc_cpp_plugin",
-        actual = "@com_github_grpc_grpc//src/compiler:grpc_cpp_plugin",
+        actual = "@grpc//src/compiler:grpc_cpp_plugin",
     )
 
     native.bind(
         name = "grpc++_codegen_proto",
-        actual = "@com_github_grpc_grpc//:grpc++_codegen_proto",
+        actual = "@grpc//:grpc++_codegen_proto",
     )
 
     native.bind(
@@ -112,7 +112,7 @@ def grpc_deps():
     if "zlib" not in native.existing_rules():
         http_archive(
             name = "zlib",
-            build_file = "@com_github_grpc_grpc//third_party:zlib.BUILD",
+            build_file = "@grpc//third_party:zlib.BUILD",
             sha256 = "6d4d6640ca3121620995ee255945161821218752b551a1a180f4215f7d124d45",
             strip_prefix = "zlib-cacf7f1d4e3d44d871b605da3b647f07d718623f",
             url = "https://github.com/madler/zlib/archive/cacf7f1d4e3d44d871b605da3b647f07d718623f.tar.gz",
@@ -161,7 +161,7 @@ def grpc_deps():
     if "com_github_cares_cares" not in native.existing_rules():
         http_archive(
             name = "com_github_cares_cares",
-            build_file = "@com_github_grpc_grpc//third_party:cares/cares.BUILD",
+            build_file = "@grpc//third_party:cares/cares.BUILD",
             sha256 = "e8c2751ddc70fed9dc6f999acd92e232d5846f009ee1674f8aee81f19b2b915a",
             strip_prefix = "c-ares-e982924acee7f7313b4baa4ee5ec000c5e373c30",
             url = "https://github.com/c-ares/c-ares/archive/e982924acee7f7313b4baa4ee5ec000c5e373c30.tar.gz",
@@ -265,7 +265,7 @@ def grpc_test_only_deps():
             sha256 = "ca17699d0d62eafc5c28daf2c7d0a18e62ae77b4137300b6c7d7868b39b06139",
             strip_prefix = "twisted-twisted-17.5.0",
             url = "https://github.com/twisted/twisted/archive/twisted-17.5.0.zip",
-            build_file = "@com_github_grpc_grpc//third_party:twisted.BUILD",
+            build_file = "@grpc//third_party:twisted.BUILD",
         )
 
     if "com_github_yaml_pyyaml" not in native.existing_rules():
@@ -274,7 +274,7 @@ def grpc_test_only_deps():
             sha256 = "6b4314b1b2051ddb9d4fcd1634e1fa9c1bb4012954273c9ff3ef689f6ec6c93e",
             strip_prefix = "pyyaml-3.12",
             url = "https://github.com/yaml/pyyaml/archive/3.12.zip",
-            build_file = "@com_github_grpc_grpc//third_party:yaml.BUILD",
+            build_file = "@grpc//third_party:yaml.BUILD",
         )
 
     if "com_github_twisted_incremental" not in native.existing_rules():
@@ -283,7 +283,7 @@ def grpc_test_only_deps():
             sha256 = "f0ca93359ee70243ff7fbf2d904a6291810bd88cb80ed4aca6fa77f318a41a36",
             strip_prefix = "incremental-incremental-17.5.0",
             url = "https://github.com/twisted/incremental/archive/incremental-17.5.0.zip",
-            build_file = "@com_github_grpc_grpc//third_party:incremental.BUILD",
+            build_file = "@grpc//third_party:incremental.BUILD",
         )
 
     if "com_github_zopefoundation_zope_interface" not in native.existing_rules():
@@ -292,7 +292,7 @@ def grpc_test_only_deps():
             sha256 = "e9579fc6149294339897be3aa9ecd8a29217c0b013fe6f44fcdae00e3204198a",
             strip_prefix = "zope.interface-4.4.3",
             url = "https://github.com/zopefoundation/zope.interface/archive/4.4.3.zip",
-            build_file = "@com_github_grpc_grpc//third_party:zope_interface.BUILD",
+            build_file = "@grpc//third_party:zope_interface.BUILD",
         )
 
     if "com_github_twisted_constantly" not in native.existing_rules():
@@ -301,5 +301,5 @@ def grpc_test_only_deps():
             sha256 = "2702cd322161a579d2c0dbf94af4e57712eedc7bd7bbbdc554a230544f7d346c",
             strip_prefix = "constantly-15.1.0",
             url = "https://github.com/twisted/constantly/archive/15.1.0.zip",
-            build_file = "@com_github_grpc_grpc//third_party:constantly.BUILD",
+            build_file = "@grpc//third_party:constantly.BUILD",
         )

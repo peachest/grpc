@@ -1,6 +1,17 @@
 gRPC - An RPC library and framework
 ===================================
 
+This project is to patch grpc for ml-metdata. 
+
+Proejct ml-metadata depends on tensorflow, and both projects depend on grpc. 
+When building with bazel, targets of grpc are loaded by both projects using `@grpc//`,
+especially `@grpc//bazel:grpc_dep` and `@grpc//bazel:grpc_extra_deps` which are used for fetching dependencies of grpc, 
+and `@grpc//:grpc++` which is the main index of grpc when bazel building ml-metadata and tensorflow.
+However, grpc itself loads its targets by `@com_github_grpc_grpc//`. 
+Therefore, it needs to patch grpc to unifying the way to loading targets with ml-metadata and tensorflow, 
+
+===================================
+
 gRPC is a modern, open source, high-performance remote procedure call (RPC) framework that can run anywhere. gRPC enables client and server applications to communicate transparently, and simplifies the building of connected systems.
 
 <table>
@@ -83,3 +94,4 @@ Libraries in different languages may be in various states of development. We are
 | WebJS                   | [grpc-web](https://github.com/grpc/grpc-web)         |
 | Dart                    | [grpc-dart](https://github.com/grpc/grpc-dart)       |
 | .NET (pure C# impl.)    | [grpc-dotnet](https://github.com/grpc/grpc-dotnet)   |
+
